@@ -7,3 +7,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "mainapp",
 ]
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
