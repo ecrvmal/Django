@@ -14,8 +14,23 @@
                 "0.0.0.0:8000"
             ],
             "django": true,
+<<<<<<< HEAD
             "justMyCode": true,
             "python.terminal.activateEnvironment": true,
+=======
+            "justMyCode": true
+        },
+        {
+            "name": "Selenium test",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/manage.py",
+            "args": [
+                "test",
+                "mainapp.tests.TestNewsSelenium.test_pick_color"
+            ],
+            "console": "integratedTerminal"
+>>>>>>> fee32946d0294fa3377a8ca5651d9e5df6caf2cb
         }
     ]
 }
