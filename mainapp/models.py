@@ -41,7 +41,6 @@ class Courses(models.Model):
     def delete(self, *args):
         self.deleted = True
         self.save()
-        
 
 
 class Lesson(models.Model):
@@ -78,4 +77,3 @@ class CourseTeachers(models.Model):
     def delete(self, *args):
         self.deleted = True
         self.save()
-        

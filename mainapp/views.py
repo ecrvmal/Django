@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-=======
-
 from django.shortcuts import get_object_or_404
->>>>>>> 07900d3e5a9519fe0ab9232d85e646576cf1bd75
 from datetime import datetime
 
 from django.views.generic import TemplateView
