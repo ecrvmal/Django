@@ -1,20 +1,19 @@
 
     "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Django",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/manage.py",
-            "args": [
-                "runserver",
-                "0.0.0.0:8000"
-            ],
-            "django": true,
+    "configurations": [{
+        "name": "Django",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/manage.py",
+        "args": [
+            "runserver",
+            "0.0.0.0:8000"
+        ],
+        "django": true,
 
-            "justMyCode": true,
-            "python.terminal.activateEnvironment": true,
+        "justMyCode": true,
+        "python.terminal.activateEnvironment": true,
 
-        }
-    ]
+    }]
 }
+
