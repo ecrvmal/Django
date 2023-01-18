@@ -6,20 +6,20 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('mainapp', '0002_data_migration'),
+        ("mainapp", "0002_data_migration"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='courseteachers',
-            options={'verbose_name': 'Teacher', 'verbose_name_plural': 'Teachers'},
+            name="courseteachers",
+            options={"verbose_name": "Teacher", "verbose_name_plural": "Teachers"},
         ),
         migrations.AlterModelOptions(
-            name='lesson',
-            options={'ordering': ('course', 'num'), 'verbose_name': 'Lesson', 'verbose_name_plural': 'Lessons'},
+            name="lesson",
+            options={"ordering": ("course", "num"), "verbose_name": "Lesson", "verbose_name_plural": "Lessons"},
         ),
         migrations.AlterModelOptions(
-            name='news',
-            options={'ordering': ('-created',), 'verbose_name': 'News', 'verbose_name_plural': 'News'},
+            name="news",
+            options={"ordering": ("-created",), "verbose_name": "News", "verbose_name_plural": "News"},
         ),
     ]
