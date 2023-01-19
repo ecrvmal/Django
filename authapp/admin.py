@@ -1,4 +1,4 @@
-#authapp/admin.py
+# authapp/admin.py
 from django.contrib import admin
 
 from authapp import models
@@ -8,4 +8,3 @@ from authapp import models
 class CustomUserAdmin(admin.ModelAdmin):
     list_display = ["id", "username", "email", "is_active", "date_joined"]
     ordering = ["-date_joined"]
-    
