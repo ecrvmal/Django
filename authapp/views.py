@@ -52,4 +52,3 @@ class ProfileEditView(UserPassesTestMixin, UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("authapp:profile_edit", args=[self.request.user.pk])
-    
