@@ -33,12 +33,11 @@ class NewsListView(ListView):
             news_query_set = super().get_queryset().filter(deleted=False)
             cache.set(f"cached_news", news_query_set, timeout=300)  # 5 minutes
             return news_query_set
-        else: 
+        else:
             return cached_news_list
-        
+
     # def get_queryset(self):
     #     return super().get_queryset().filter(deleted=False)
-
 
 
 class NewsCreateView(PermissionRequiredMixin, CreateView):
