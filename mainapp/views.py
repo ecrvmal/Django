@@ -28,7 +28,16 @@ class NewsListView(ListView):
     paginate_by = 5
 
     def get_queryset(self):
-        return super().get_queryset().filter(deleted=False)
+        cached_news_list = cache.get(f"cached_news")
+        if not cached_news_list:
+            news_query_set = super().get_queryset().filter(deleted=False)
+            cache.set(f"cached_news", news_query_set, timeout=300)  # 5 minutes
+            return news_query_set
+        else:
+            return cached_news_list
+
+    # def get_queryset(self):
+    #     return super().get_queryset().filter(deleted=False)
 
 
 class NewsCreateView(PermissionRequiredMixin, CreateView):
@@ -90,6 +99,7 @@ class CoursesDetailView(TemplateView):
             )
             cache.set(f"feedback_list_{pk}", context["feedback_list"], timeout=300)  # 5 minutes
 
+
             # Archive object for tests --->
             # import pickle
 
@@ -99,7 +109,7 @@ class CoursesDetailView(TemplateView):
 
         else:
             context["feedback_list"] = cached_feedback
-        return context
+
 
 
 class CourseFeedbackFormProcessView(LoginRequiredMixin, CreateView):
@@ -153,13 +163,28 @@ class DocSitePageView(TemplateView):
 class LogView(TemplateView):
     template_name = "mainapp/log_view.html"
 
+
+    # def get_context_data(self, **kwargs):
+    #     context = super(LogView, self).get_context_data(**kwargs)
+    #     log_slice = []
+    #     with open(settings.LOG_FILE, "r") as log_file:
+    #         for i, line in enumerate(log_file):
+    #             if i == 1000:  # first 1000 lines
+    #                 break
+    #             log_slice.insert(0, line)  # append at start
+    #         context["log"] = "".join(log_slice)
+    #     return context
+
+
     def get_context_data(self, **kwargs):
         context = super(LogView, self).get_context_data(**kwargs)
         log_slice = []
         with open(settings.LOG_FILE, "r") as log_file:
             for i, line in enumerate(log_file):
-                if i == 1000:  # first 1000 lines
-                    break
+#               if i == 1000:  # first 1000 lines
+                if i >= 200:  # if >  200 lines
+                    del log_slice[-1]  # delete from end
+
                 log_slice.insert(0, line)  # append at start
             context["log"] = "".join(log_slice)
         return context
