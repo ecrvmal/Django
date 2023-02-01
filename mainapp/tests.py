@@ -2,22 +2,16 @@ import pickle
 from http import HTTPStatus
 from unittest import mock
 
-from django.conf import settings
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core import mail as django_mail
 from django.test import Client, TestCase
 from django.urls import reverse
-from selenium.webdriver.common.by import By
-# from selenium import WebDriver
-from selenium.webdriver.firefox.webdriver import WebDriver
-#from selenium.webdriver.firefox import webdriver
-from selenium.webdriver.firefox.options import Options
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.support.ui import WebDriverWait
 
 from authapp import models as authapp_models
 from mainapp import models as mainapp_models
 from mainapp import tasks as mainapp_tasks
+
+# from selenium import WebDriver
+# from selenium.webdriver.firefox import webdriver
 
 
 class TestMainPage(TestCase):
@@ -157,7 +151,7 @@ class TestCoursesWithMock(TestCase):
 #         firefox_options = Options()
 #         # firefox_options.set_headless(headless=True)
 #         self.selenium = WebDriver(
-#             executable_path=settings.SELENIUM_DRIVER_PATH_FF, 
+#             executable_path=settings.SELENIUM_DRIVER_PATH_FF,
 #             options=firefox_options)
 #         self.selenium.implicitly_wait(10)
 #         # Login

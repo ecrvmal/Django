@@ -99,7 +99,6 @@ class CoursesDetailView(TemplateView):
             )
             cache.set(f"feedback_list_{pk}", context["feedback_list"], timeout=300)  # 5 minutes
 
-
             # Archive object for tests --->
             # import pickle
 
@@ -109,7 +108,6 @@ class CoursesDetailView(TemplateView):
 
         else:
             context["feedback_list"] = cached_feedback
-
 
 
 class CourseFeedbackFormProcessView(LoginRequiredMixin, CreateView):
@@ -163,7 +161,6 @@ class DocSitePageView(TemplateView):
 class LogView(TemplateView):
     template_name = "mainapp/log_view.html"
 
-
     # def get_context_data(self, **kwargs):
     #     context = super(LogView, self).get_context_data(**kwargs)
     #     log_slice = []
@@ -175,13 +172,12 @@ class LogView(TemplateView):
     #         context["log"] = "".join(log_slice)
     #     return context
 
-
     def get_context_data(self, **kwargs):
         context = super(LogView, self).get_context_data(**kwargs)
         log_slice = []
         with open(settings.LOG_FILE, "r") as log_file:
             for i, line in enumerate(log_file):
-#               if i == 1000:  # first 1000 lines
+                #               if i == 1000:  # first 1000 lines
                 if i >= 200:  # if >  200 lines
                     del log_slice[-1]  # delete from end
 
