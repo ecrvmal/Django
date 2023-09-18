@@ -2,6 +2,7 @@ import pickle
 from http import HTTPStatus
 from unittest import mock
 
+<<<<<<< HEAD
 from django.conf import settings
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.core import mail as django_mail
@@ -14,10 +15,19 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+=======
+from django.core import mail as django_mail
+from django.test import Client, TestCase
+from django.urls import reverse
+>>>>>>> ebd0677f32d6d7d52971b7c04b3ba580fddc83bb
 
 from authapp import models as authapp_models
 from mainapp import models as mainapp_models
 from mainapp import tasks as mainapp_tasks
+
+
+# from selenium import WebDriver
+# from selenium.webdriver.firefox import webdriver
 
 
 class TestMainPage(TestCase):
@@ -34,17 +44,43 @@ class TestNewsPage(TestCase):
     )
 
     def setUp(self):
+
+        """
+        The setUp function is called before each test function.
+        It creates a client with authentication, and an admin user.
+
+        :param self: Represent the instance of the object that is using the method
+        :return: A client with authentication
+        """
         super().setUp()
         self.client_with_auth = Client()
         self.user_admin = authapp_models.CustomUser.objects.get(username="admin")
         self.client_with_auth.force_login(self.user_admin, backend="django.contrib.auth.backends.ModelBackend")
 
     def test_page_open_list(self):
+
+        """
+        The test_page_open_list function tests that the news page is open and accessible.
+        It does this by using the reverse function to get a path for the news page, then uses
+        the client to get that path. It then asserts that it gets an OK status code.
+
+        :param self: Represent the instance of the class
+        :return: The httpstatus
+        """
         path = reverse("mainapp:news")
         result = self.client.get(path)
         self.assertEqual(result.status_code, HTTPStatus.OK)
 
     def test_page_open_detail(self):
+        """
+        The test_page_open_detail function tests that the detail page for a news object is accessible.
+        It does this by first getting the first News object from the database, then using its primary key to create a path
+        to it's detail page. It then uses Django's test client to get that path and checks if it returns an HTTP 200 status code.
+
+        :param self: Access the attributes and methods of the class in python
+        :return: The status code of the response
+        :doc-author: Trelent
+        """
         news_obj = mainapp_models.News.objects.first()
         path = reverse("mainapp:news_detail", args=[news_obj.pk])
         result = self.client.get(path)
@@ -157,7 +193,11 @@ class TestCoursesWithMock(TestCase):
 #         firefox_options = Options()
 #         # firefox_options.set_headless(headless=True)
 #         self.selenium = WebDriver(
+<<<<<<< HEAD
 #             executable_path=settings.SELENIUM_DRIVER_PATH_FF, 
+=======
+#             executable_path=settings.SELENIUM_DRIVER_PATH_FF,
+>>>>>>> ebd0677f32d6d7d52971b7c04b3ba580fddc83bb
 #             options=firefox_options)
 #         self.selenium.implicitly_wait(10)
 #         # Login

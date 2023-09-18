@@ -12,6 +12,16 @@ from django.utils.translation import gettext_lazy as _
 def users_avatars_path(instance, filename):
     # file will be uploaded to
     #   MEDIA_ROOT / user_<username> / avatars / <filename>
+
+    """
+    The users_avatars_path function is a function that takes in an instance of the User model and a filename.
+    It returns the path to where we want to store our user's avatar images.
+    The path will be: MEDIA_ROOT / user_&lt;username&gt; / avatars / &lt;filename&gt;
+
+    :param instance: Get the username of the user who uploaded
+    :param filename: Get the name of the file that was uploaded
+    :return: The path to the avatar image file
+    """
     num = int(time() * 1000)
     suff = Path(filename).suffix
     return "user_{0}/avatars/{1}".format(instance.username, f"pic_{num}{suff}")

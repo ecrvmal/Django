@@ -182,6 +182,7 @@ class LogView(TemplateView):
         with open(settings.LOG_FILE, "r") as log_file:
             for i, line in enumerate(log_file):
 #               if i == 1000:  # first 1000 lines
+
                 if i >= 200:  # if >  200 lines
                     del log_slice[-1]  # delete from end
 

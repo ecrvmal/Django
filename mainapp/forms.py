@@ -23,6 +23,9 @@ class CourseFeedbackForm(forms.ModelForm):
 
 
 class MailFeedbackForm(forms.Form):
+    """
+    the class compose user feedback form
+    """
     user_id = forms.IntegerField(widget=forms.HiddenInput)
     message = forms.CharField(
         widget=forms.Textarea,
